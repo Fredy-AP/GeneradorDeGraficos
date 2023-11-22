@@ -9,40 +9,35 @@
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@0.5.0/dist/html2canvas.min.js"></script>
     <style>
         body {
-            background-image: url('/diagrama-de-clases-uml.jpg');
+            background-image: url('uml.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            color: #ffffff; /* Cambia el color del texto para que sea legible en la imagen de fondo */
+            color: #ffffff;
         }
-        .contacto{
-            color:black;
+        .contacto {
+            color: black;
             font-size: 23px;
             text-align: center;
             font-weight: bold;
-
         }
-
         .container {
             background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
         #myChart {
             max-width: 100%;
             height: auto;
             margin-top: 20px;
         }
-
         .btn {
             margin-right: 10px;
         }
     </style>
 </head>
 <body>
-    
     <div class="container mt-5">
         <h1 class="mb-4">Generador de Gráficos</h1>
         <div class="mb-3">
@@ -74,7 +69,7 @@
             const datos = document.getElementById('datos').value.split(',').map(Number);
 
             if (myChart) {
-                myChart.destroy(); // Destruye el gráfico anterior si existe
+                myChart.destroy();
             }
 
             const ctx = document.getElementById('myChart').getContext('2d');
@@ -88,7 +83,7 @@
                     myChart = new Chart(ctx, {
                         type: tipoGrafico,
                         data: {
-                            labels: [...Array(datos.length).keys()], // Etiquetas numeradas
+                            labels: [...Array(datos.length).keys()],
                             datasets: [{
                                 label: 'Datos',
                                 data: datos,
@@ -107,10 +102,15 @@
                 const link = document.createElement('a');
                 link.href = canvas.toDataURL('image/jpeg');
                 link.download = 'grafico.jpg';
+                link.setAttribute('download', 'grafico.jpg'); // Agregar el atributo download
+                document.body.appendChild(link);
                 link.click();
+                document.body.removeChild(link);
             });
         }
+    
     </script>
     <h1 class="contacto">contacto fredy113@gmail.com</h1>
 </body>
 </html>
+
